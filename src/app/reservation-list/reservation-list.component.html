@@ -1,0 +1,30 @@
+<h1>Reservations</h1>
+<button routerLink='/new'>Add a Reservation</button>
+<button [routerLink]="['']">Home</button>
+
+<table style="margin-top: 2%;" *ngIf="reservations.length else noRecords">
+    <thead>
+        <tr>
+            <th>GuestName</th>
+            <th>Room No</th>
+            <th>Check In time</th>
+            <th>Check out time</th>
+            <th>GuestEmail</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reservation of reservations">
+            <td>{{reservation.guestName}}</td>
+            <td>{{reservation.roomNumber}}</td>
+            <td>{{reservation.checkInDate}}</td>
+            <td>{{reservation.checkOutDate}}</td>
+            <td>{{reservation.guestEmail}}</td>
+            <td><button (click)="deleteReservation(reservation.id)" >Delete</button></td>
+            <td><button [routerLink]="['/edit',reservation.id]" >Edit</button></td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #noRecords>
+    <p>No records are present</p>
+</ng-template>
